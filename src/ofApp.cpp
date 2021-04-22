@@ -27,6 +27,8 @@ void ofApp::draw(){
 }
 void ofApp::drawMode1(int x, int y, int n){
     if(n!=0){
+        ofSetFrameRate(8);
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawCircle(x, y, 100);
         drawMode1(x+100, y, n-1);
         drawMode1(x-100, y, n-1);
@@ -42,8 +44,11 @@ void ofApp::drawMode2(int length, int n, int x, int y, int d){
         int rightBranchX = x +length*cos(PI/180*d);
         int rightBranchY = middleY -length*sin(PI/180*d);
 
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawLine(x, y, x,y-length);
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawLine(x, y-length, rightBranchX, rightBranchY);
+        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawLine(x,y-length, leftBranchX, leftBranchY);
 
         drawMode2(length/2, n-1,rightBranchX,rightBranchY, 30);
@@ -61,6 +66,7 @@ void ofApp::drawMode3(float x, float y, float size, int n){
     ofPoint b(x + size, y);
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
+    ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
     ofDrawTriangle(a, b, c);
 
     drawMode3(x, y, size / 2, n - 1);
