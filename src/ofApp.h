@@ -1,16 +1,16 @@
 #pragma once
 #include<cmath>
-
 #include "ofMain.h"
+#include "FractalMode.h"
+#include "CircleFractal.h"
+#include "BranchFractal.h"
+#include "SierpinskiFractal.h"
 
 class ofApp : public ofBaseApp{
 	public:
 		void setup();
 		void update();
 		void draw();
-
-		void drawMode1(int x, int y, int n);
-		void drawMode2(int length, int n, int x, int y, int d);
 		void drawMode3(float x, float y, float size, int n);
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -28,6 +28,10 @@ class ofApp : public ofBaseApp{
 		bool addMode2 = false;
 		bool addMode3 = false;
 		bool toggle = false;
-
+		vector<FractalMode*> modes;
 		int levels = 4;
+
+		CircleFractal *circleFractal;
+		BranchFractal *branchFractal;
+		SierpinskiFractal *sierpinskiFractal;
 };

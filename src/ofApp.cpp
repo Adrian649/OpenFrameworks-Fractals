@@ -2,6 +2,12 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    circleFractal = new CircleFractal(levels);
+    branchFractal = new BranchFractal(levels);
+    sierpinskiFractal = new SierpinskiFractal(levels);
+    modes.push_back(circleFractal);
+    modes.push_back(branchFractal);
+    modes.push_back(sierpinskiFractal);
 }
 
 //--------------------------------------------------------------
@@ -9,6 +15,15 @@ void ofApp::update(){
     /* The update method is called muliple times per second
     It's in charge of updating variables and the logic of our app */
     ofSetBackgroundColor(0,0,0);
+    if (modes[0]->getActivate() == true) {
+        modes[0]->setN(levels);
+    }
+    if (modes[1]->getActivate() == true) {
+        modes[1]->setN(levels);
+    }
+    if (modes[2]->getActivate() == true) {
+        modes[2]->setN(levels);
+    }
 }
 
 //--------------------------------------------------------------
@@ -16,76 +31,27 @@ void ofApp::draw(){
     /* The update method is called muliple times per second
     It's in charge of drawing all figures and text on screen */
     ofNoFill();
-    if(addMode1 == true){
-        drawMode1(ofGetWidth()/2, ofGetHeight()/2, levels);
-    }if(addMode2 == true){
-        drawMode2(200, levels, ofGetWidth()/2, ofGetHeight()-50, 30);
-    }if(addMode3 == true) {
-        drawMode3(ofGetWidth() / 3, 10, ofGetHeight() / 2, levels);
-
+    if(modes[0]->getActivate()){
+        modes[0]->draw();
+    }if(modes[1]->getActivate()){
+        modes[1]->draw();
+    }if(modes[2]->getActivate()) {
+        modes[2]->draw();
     }
 }
-void ofApp::drawMode1(int x, int y, int n){
-    if(n!=0){
-        ofSetFrameRate(8);
-        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
-        ofDrawCircle(x, y, 100);
-        drawMode1(x+100, y, n-1);
-        drawMode1(x-100, y, n-1);
-        drawMode1(x, y+100, n-1);
-        drawMode1(x, y-100, n-1);
-    }
-}
-void ofApp::drawMode2(int length, int n, int x, int y, int d){
-    if(n != 0){
-        int middleY = y-length;
-        int leftBranchX = x -length*cos(PI/180*d);
-        int leftBranchY = middleY -length*sin(PI/180*d);
-        int rightBranchX = x +length*cos(PI/180*d);
-        int rightBranchY = middleY -length*sin(PI/180*d);
-
-        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
-        ofDrawLine(x, y, x,y-length);
-        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
-        ofDrawLine(x, y-length, rightBranchX, rightBranchY);
-        ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
-        ofDrawLine(x,y-length, leftBranchX, leftBranchY);
-
-        drawMode2(length/2, n-1,rightBranchX,rightBranchY, 30);
-        drawMode2(length/2,n-1,leftBranchX,leftBranchY, 30);
-    }
-    
-}
-
-void ofApp::drawMode3(float x, float y, float size, int n){
-    if(n == 0) {
-        return;
-    }
-
-    ofPoint a(x, y);
-    ofPoint b(x + size, y);
-    ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
-
-    ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
-    ofDrawTriangle(a, b, c);
-
-    drawMode3(x, y, size / 2, n - 1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
-}
-
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
     // This method is called automatically when any key is pressed
     switch(key){
         case '1':
-            addMode1 = !addMode1;
+            modes[0]->setActivate(!modes[0]->getActivate());
             break;
         case '2':
-            addMode2 = !addMode2;
+            modes[1]->setActivate(!modes[1]->getActivate());
             break;
         case '3':
-            addMode3 = !addMode3;
+            modes[2]->setActivate(!modes[2]->getActivate());
             break;
         case '4':
             //mode = '4';
