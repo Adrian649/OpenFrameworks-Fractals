@@ -6,19 +6,19 @@ CircleFractal::CircleFractal(int levels) {
 
 void CircleFractal::draw()
 {
-    drawMode(x,y,n);
+    drawMode(x,y,n,radius);
 }
 
-void CircleFractal::drawMode(int x, int y, int n) {
+void CircleFractal::drawMode(int x, int y, int n, float r) {
     if (n != 0)
     {
         ofSetFrameRate(8);
         ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
-        ofDrawCircle(x, y, 100);
-        drawMode(x + 100, y, n - 1);
-        drawMode(x - 100, y, n - 1);
-        drawMode(x, y + 100, n - 1);
-        drawMode(x, y - 100, n - 1);
+        ofDrawCircle(x, y, r);
+        drawMode(x + r, y, n - 1, r/1.8);
+        drawMode(x - r, y, n - 1, r/1.8);
+        drawMode(x, y + r, n - 1, r/1.8);
+        drawMode(x, y - r, n - 1, r/1.8);
     }
 }
 
