@@ -13,9 +13,9 @@ void BranchFractal::drawMode(int length, int n, int x, int y, int d) {
     if(n != 0){
         int middleY = y-length;
         int leftBranchX = x -length*cos(PI/180*d);
-        int leftBranchY = middleY -length*sin(PI/180*d);
+        int leftBranchY = middleY -length*sin(PI/180*ofRandom(30,70));
         int rightBranchX = x +length*cos(PI/180*d);
-        int rightBranchY = middleY -length*sin(PI/180*d);
+        int rightBranchY = middleY -length*sin(PI/180*ofRandom(30,70));
 
         ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawLine(x, y, x,y-length);
@@ -24,8 +24,8 @@ void BranchFractal::drawMode(int length, int n, int x, int y, int d) {
         ofSetColor(ofRandom(255),ofRandom(255),ofRandom(255));
         ofDrawLine(x,y-length, leftBranchX, leftBranchY);
 
-        drawMode(length/2, n-1,rightBranchX,rightBranchY, 30);
-        drawMode(length/2,n-1,leftBranchX,leftBranchY, 30);
+        drawMode(length/2, n-1,rightBranchX,rightBranchY, ofRandom(30,70));
+        drawMode(length/2,n-1,leftBranchX,leftBranchY, ofRandom(30,70));
     }
 }
 
