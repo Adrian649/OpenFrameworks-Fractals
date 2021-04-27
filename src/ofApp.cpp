@@ -24,6 +24,17 @@ void ofApp::update(){
     if (modes[2]->getActivate() == true) {
         modes[2]->setN(levels);
     }
+    if (isReplaying) {
+        if (counter >= 30) {
+            levels++;
+            counter = 0;
+        }
+        if (levels == 8) {
+            isReplaying = false;
+            counter = 0;
+        }
+    }
+    counter++;
 }
 
 //--------------------------------------------------------------
@@ -65,6 +76,11 @@ void ofApp::keyPressed(int key){
             if (levels > 0) {
                 levels--;
             }
+            break;
+        case ' ':
+            isReplaying = true;
+            levels = 0;
+            break;
     }
 }
 

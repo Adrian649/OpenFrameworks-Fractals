@@ -28,6 +28,8 @@ class ofApp : public ofBaseApp{
 		bool addMode2 = false;
 		bool addMode3 = false;
 		bool toggle = false;
+		int counter = 0;
+		bool isReplaying = false;
 		vector<FractalMode*> modes;
 		int levels = 4;
 
