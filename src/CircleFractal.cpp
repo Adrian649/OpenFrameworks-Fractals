@@ -12,7 +12,6 @@ void CircleFractal::draw()
 void CircleFractal::drawMode(int x, int y, int n, float r) {
     if (n != 0)
     {
-        ofSetFrameRate(8);
         ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
         ofDrawCircle(x, y, r);
         drawMode(x + r, y, n - 1, r/1.8);

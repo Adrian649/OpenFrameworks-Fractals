@@ -2,6 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    ofSetFrameRate(8);
     circleFractal = new CircleFractal(levels);
     branchFractal = new BranchFractal(levels);
     sierpinskiFractal = new SierpinskiFractal(levels);

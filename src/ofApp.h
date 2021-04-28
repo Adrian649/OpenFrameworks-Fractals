@@ -26,9 +26,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 	private:
-		bool addMode1 = true;
-		bool addMode2 = false;
-		bool addMode3 = false;
 		bool toggle = false;
 		int counter = 0;
 		bool isReplaying = false;
