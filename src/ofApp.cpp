@@ -6,10 +6,12 @@ void ofApp::setup(){
     branchFractal = new BranchFractal(levels);
     sierpinskiFractal = new SierpinskiFractal(levels);
     ellipsefractal = new EllipseFractal(levels);
+    boxFractal = new BoxFractal(levels);
     modes.push_back(circleFractal);
     modes.push_back(branchFractal);
     modes.push_back(sierpinskiFractal);
     modes.push_back(ellipsefractal);
+    modes.push_back(boxFractal);
 }
 
 //--------------------------------------------------------------
@@ -28,6 +30,9 @@ void ofApp::update(){
     }
     if (modes[3]->getActivate() == true) {
         modes[3]->setN(levels);
+    }
+    if (modes[4]->getActivate() == true) {
+        modes[4]->setN(levels);
     }
     if (isReplaying) {
         if (counter >= 30) {
@@ -55,6 +60,8 @@ void ofApp::draw(){
         modes[2]->draw();
     }if (modes[3]->getActivate()) {
         modes[3]->draw();
+    }if (modes[4]->getActivate()) {
+        modes[4]->draw();
     }
 }
 
@@ -73,6 +80,9 @@ void ofApp::keyPressed(int key){
             break;
         case '4':
             modes[3]->setActivate(!modes[3]->getActivate());
+            break;
+        case '5':
+            modes[4]->setActivate(!modes[4]->getActivate());
             break;
         case '=':
             if (levels < 11) {

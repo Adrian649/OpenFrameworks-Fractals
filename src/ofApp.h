@@ -6,6 +6,7 @@
 #include "BranchFractal.h"
 #include "SierpinskiFractal.h"
 #include "EllipseFractal.h"
+#include "BoxFractal.h"
 
 class ofApp : public ofBaseApp{
 	public:
@@ -38,4 +39,5 @@ class ofApp : public ofBaseApp{
 		BranchFractal *branchFractal;
 		SierpinskiFractal *sierpinskiFractal;
 		EllipseFractal *ellipsefractal;
+		BoxFractal *boxFractal;
 };
