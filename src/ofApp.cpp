@@ -5,9 +5,11 @@ void ofApp::setup(){
     circleFractal = new CircleFractal(levels);
     branchFractal = new BranchFractal(levels);
     sierpinskiFractal = new SierpinskiFractal(levels);
+    ellipsefractal = new EllipseFractal(levels);
     modes.push_back(circleFractal);
     modes.push_back(branchFractal);
     modes.push_back(sierpinskiFractal);
+    modes.push_back(ellipsefractal);
 }
 
 //--------------------------------------------------------------
@@ -23,6 +25,9 @@ void ofApp::update(){
     }
     if (modes[2]->getActivate() == true) {
         modes[2]->setN(levels);
+    }
+    if (modes[3]->getActivate() == true) {
+        modes[3]->setN(levels);
     }
     if (isReplaying) {
         if (counter >= 30) {
@@ -42,12 +47,14 @@ void ofApp::draw(){
     /* The update method is called muliple times per second
     It's in charge of drawing all figures and text on screen */
     ofNoFill();
-    if(modes[0]->getActivate()){
+    if (modes[0]->getActivate()){
         modes[0]->draw();
-    }if(modes[1]->getActivate()){
+    }if (modes[1]->getActivate()){
         modes[1]->draw();
-    }if(modes[2]->getActivate()) {
+    }if (modes[2]->getActivate()) {
         modes[2]->draw();
+    }if (modes[3]->getActivate()) {
+        modes[3]->draw();
     }
 }
 
@@ -65,8 +72,8 @@ void ofApp::keyPressed(int key){
             modes[2]->setActivate(!modes[2]->getActivate());
             break;
         case '4':
-            //mode = '4';
-           // break;
+            modes[3]->setActivate(!modes[3]->getActivate());
+            break;
         case '=':
             if (levels < 11) {
                 levels++;
